@@ -1030,7 +1030,7 @@ section #title-slide-logo {
 <li>Browser makers are more cooperative than ever before</li>
 <li>Browser innovation has absolutely exloded
 <ul>
-<li>to the point where developers are not keeping up</li>
+<li><strong>faster than developers are able to keep up</strong></li>
 </ul>
 </li>
 </ul>
@@ -1219,7 +1219,8 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="but-its-doesnt-have-to-be-this-way">But it's doesn't have to be this way...</h1>
+<h1 id="so-we-have-all-these-great-things">So we have all these great things</h1>
+<h2 id="but-we-have-we-made-the-experience-of-web-application-development-better">But we have we made the experience of web application development better?</h2>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-footer="![](full-color.png)" data-style="
@@ -1277,7 +1278,7 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="lets-talk-about-some-good-ideas">Let's talk about some good ideas!</h1>
+<h1 id="lets-see-what-we-can-do-about-that">Let's see what we can do about that!</h1>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-footer="![](full-color.png)" data-style="
@@ -1335,7 +1336,7 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="lets-talk-about-managing-state">Let's talk about managing state...</h1>
+<h1 id="first-lets-talk-about-managing-state">First, let's talk about managing state...</h1>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-footer="![](full-color.png)" data-style="
@@ -1665,7 +1666,7 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="another-good-idea-dumb-clients">Another good idea: &quot;dumb&quot; clients</h1>
+<h1 id="another-simple-idea-dumb-components">Another simple idea: &quot;dumb&quot; components</h1>
 <ul>
 <li>React</li>
 <li>EmberJS (actions up, data down)</li>
@@ -1728,7 +1729,7 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="clients-are-dumb-if">Clients are dumb if...</h1>
+<h1 id="components-are-dumb-if">Components are dumb if...</h1>
 <ul>
 <li>render data
 <ul>
@@ -1939,7 +1940,8 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="but-how-do-we-actually-add-comments">But how do we actually add comments?</h1>
+<h1 id="but-where-do-the-comments-actually-go">But where do the comments actually go?</h1>
+<h2 id="how-to-send-them-to-server">How to send them to server?</h2>
 <ul>
 <li>We could make an API
 <ul>
@@ -2127,7 +2129,7 @@ section #title-slide-logo {
 }
 ;">
 <p><img src="event_reducers.png" alt="" /></p>
-<h2 id="client">Client</h2>
+<h2 id="client-dumb-comoponents">Client (dumb comoponents)</h2>
 <ul>
 <li>render state</li>
 <li>sends events</li>
@@ -2538,20 +2540,12 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="the-secret-sauce-elixir">The secret sauce: Elixir</h1>
+<h1 id="but-is-this-actually-viable">But is this actually viable?</h1>
 <ul>
-<li>Erlang/OTP: 25 years of distributed computing learning baked in</li>
-<li>Extremely light-weight processes to manage state
-<ul>
-<li><strong>Each connection has their own process and state</strong></li>
-</ul>
-</li>
-<li>High availabity, concurrent</li>
-<li>Phoenix Channels
-<ul>
-<li>An thin abstraction over WebSockets</li>
-</ul>
-</li>
+<li>Our state is <em>all</em> on the server</li>
+<li>Something needs to hold state for <em>every connected client</em></li>
+<li>This could be millions of stateful connections</li>
+<li>We just went to crazy town right?</li>
 </ul>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
@@ -2610,20 +2604,93 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="why-is-this-approach-better">Why is this approach better?</h1>
+<h1 id="the-secret-sauce-elixir">The secret sauce: Elixir</h1>
 <ul>
-<li>Higher level of abstraction</li>
-<li>Events and state vs request/response</li>
-<li>State lives on the server
+<li>Erlang/OTP: 25 years of distributed computing learning baked in</li>
+<li>Extremely light-weight processes to manage state
 <ul>
-<li>Not shared</li>
-<li>Immutable</li>
+<li><strong>Each connection has their own process and state</strong></li>
+</ul>
+</li>
+<li>High availabity, concurrent</li>
+<li>Phoenix Channels
+<ul>
+<li>An thin abstraction over WebSockets</li>
+<li>Proven to scale to millions of <em>stateful</em> connections per server</li>
 </ul>
 </li>
 </ul>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-footer="![](full-color.png)" data-style="
+section h1 {
+  color: #6042BC;
+}
+
+section code {
+  background-color: #e0e0ff;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+}
+
+footer img {
+  position: absolute;
+  width: 120px;
+  right: 20px;
+  top: 0;
+
+}
+section #title-slide-logo {
+  margin-left: -60px;
+}
+" style="--footer:![](full-color.png);--style:
+section h1 {
+  color: #6042BC;
+}
+
+section code {
+  background-color: #e0e0ff;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+}
+
+footer img {
+  position: absolute;
+  width: 120px;
+  right: 20px;
+  top: 0;
+
+}
+section #title-slide-logo {
+  margin-left: -60px;
+}
+;">
+<h1 id="why-is-this-approach-better">Why is this approach better?</h1>
+<ul>
+<li>State lives in a single place: the server
+<ul>
+<li>Not shared</li>
+<li>Immutable</li>
+</ul>
+</li>
+<li>This lets us operate at a higher level of abstraction</li>
+<li>Events and state vs request/response</li>
+</ul>
+<footer><img src="full-color.png" alt="" /></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-footer="![](full-color.png)" data-style="
 section h1 {
   color: #6042BC;
 }
@@ -2691,7 +2758,7 @@ section #title-slide-logo {
 </ul>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-footer="![](full-color.png)" data-style="
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-footer="![](full-color.png)" data-style="
 section h1 {
   color: #6042BC;
 }
@@ -2749,7 +2816,7 @@ section #title-slide-logo {
 <h1 id="real-time-comments">Real-time comments!</h1>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-footer="![](full-color.png)" data-style="
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-footer="![](full-color.png)" data-style="
 section h1 {
   color: #6042BC;
 }
@@ -2833,69 +2900,6 @@ section #title-slide-logo {
 </code></pre>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-footer="![](full-color.png)" data-style="
-section h1 {
-  color: #6042BC;
-}
-
-section code {
-  background-color: #e0e0ff;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-}
-
-footer img {
-  position: absolute;
-  width: 120px;
-  right: 20px;
-  top: 0;
-
-}
-section #title-slide-logo {
-  margin-left: -60px;
-}
-" style="--footer:![](full-color.png);--style:
-section h1 {
-  color: #6042BC;
-}
-
-section code {
-  background-color: #e0e0ff;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-}
-
-footer img {
-  position: absolute;
-  width: 120px;
-  right: 20px;
-  top: 0;
-
-}
-section #title-slide-logo {
-  margin-left: -60px;
-}
-;">
-<h1 id="so-thats-cool-but-i-want-more-control">So that's cool but I want more control!</h1>
-<ul>
-<li>I want to control the HTML that renders my comments</li>
-<li>What if I could put the template to render the comments right in my HTML?</li>
-<li>What if I didn't have to make a custom element to do it?</li>
-</ul>
-<footer><img src="full-color.png" alt="" /></footer>
-</section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-footer="![](full-color.png)" data-style="
 section h1 {
   color: #6042BC;
@@ -2951,17 +2955,8 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="what-do-we-need">What do we need?</h1>
-<ul>
-<li>We've had the <code>template</code> element</li>
-<li>We haven't had a way to add dynamic bits</li>
-<li>W3C specs that aim to solve this:
-<ul>
-<li>Template instantiation</li>
-<li>DOM Parts</li>
-</ul>
-</li>
-</ul>
+<h1 id="but-could-we-make-things-even-simpler">But could we make things even simpler?</h1>
+<h2 id="could-building-an-app-be-as-simple-as-editing-an-html-file">Could building an app be as simple as editing an HTML file?</h2>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-footer="![](full-color.png)" data-style="
@@ -3019,10 +3014,12 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="no-the-specs-are-not-final-but">No the specs are not final but...</h1>
+<h1 id="introducing-live-template">Introducing <code>&lt;live-template&gt;</code></h1>
 <ul>
-<li>Multiple polyfill implementations exist</li>
-<li>They are largely interoperable</li>
+<li>Connects a client side template to a Livestate</li>
+<li>Renders state</li>
+<li>Dispatches events</li>
+<li>Get started with only an HTML file</li>
 </ul>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
@@ -3081,73 +3078,24 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="introducing-live-template">Introducing <code>&lt;live-template&gt;</code></h1>
+<h1 id="client-side-templating">Client side templating</h1>
 <ul>
-<li>Connects a template to a Livestate</li>
-<li>Renders state</li>
-<li>Dispatches events</li>
+<li>Not yet standardized
+<ul>
+<li>but work is underway</li>
+</ul>
+</li>
+<li>I chose Sprae (for now)
+<ul>
+<li>well maintained</li>
+<li>fast</li>
+<li>works well</li>
+</ul>
+</li>
 </ul>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-footer="![](full-color.png)" data-style="
-section h1 {
-  color: #6042BC;
-}
-
-section code {
-  background-color: #e0e0ff;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-}
-
-footer img {
-  position: absolute;
-  width: 120px;
-  right: 20px;
-  top: 0;
-
-}
-section #title-slide-logo {
-  margin-left: -60px;
-}
-" style="--footer:![](full-color.png);--style:
-section h1 {
-  color: #6042BC;
-}
-
-section code {
-  background-color: #e0e0ff;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-}
-
-footer img {
-  position: absolute;
-  width: 120px;
-  right: 20px;
-  top: 0;
-
-}
-section #title-slide-logo {
-  margin-left: -60px;
-}
-;">
-<h1 id="lets-see-it"><a href="https://codepen.io/superchris-the-lessful/pen/ExMVrBo">Let's see it!</a></h1>
-<footer><img src="full-color.png" alt="" /></footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-footer="![](full-color.png)" data-style="
 section h1 {
   color: #6042BC;
 }
@@ -3207,7 +3155,76 @@ section #title-slide-logo {
 <li>We don't need a build tool to use <code>live-template</code></li>
 <li>import maps are <img class="emoji" draggable="false" alt="🔥" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f525.svg" data-marp-twemoji=""/></li>
 <li>let your browser resolve and fetch dependencies</li>
-<li>jspm makes it ridonkulously easy</li>
+<li><a href="https://jspm.io">jspm</a> makes it ridonkulously easy</li>
+</ul>
+<footer><img src="full-color.png" alt="" /></footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-footer="![](full-color.png)" data-style="
+section h1 {
+  color: #6042BC;
+}
+
+section code {
+  background-color: #e0e0ff;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+}
+
+footer img {
+  position: absolute;
+  width: 120px;
+  right: 20px;
+  top: 0;
+
+}
+section #title-slide-logo {
+  margin-left: -60px;
+}
+" style="--footer:![](full-color.png);--style:
+section h1 {
+  color: #6042BC;
+}
+
+section code {
+  background-color: #e0e0ff;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+}
+
+footer img {
+  position: absolute;
+  width: 120px;
+  right: 20px;
+  top: 0;
+
+}
+section #title-slide-logo {
+  margin-left: -60px;
+}
+;">
+<h1 id="if-great-artists-steal-lets-steal-from-the-best">If great artists steal, let's steal from the best...</h1>
+<h2 id="liveview">LiveView</h2>
+<ul>
+<li>The original</li>
+<li>Elixir front to back</li>
+<li>Client side is rendered in Elixir
+<ul>
+<li>State diffs are pushed</li>
+<li>JS client lib re-renders</li>
+</ul>
+</li>
 </ul>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
@@ -3266,13 +3283,7 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="other-other-implementations-of-this-pattern">Other other implementations of this pattern</h1>
-<ul>
-<li>LiveView (Elixir)</li>
-<li>LiveViewJS</li>
-<li>Hotwire (kinda?)</li>
-<li>LiveSvelte</li>
-</ul>
+<h1 id="lets-compare">Let's compare</h1>
 <footer><img src="full-color.png" alt="" /></footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-footer="![](full-color.png)" data-style="
@@ -3330,7 +3341,7 @@ section #title-slide-logo {
   margin-left: -60px;
 }
 ;">
-<h1 id="but-is-this-actually-viable">But is this actually viable?</h1>
+<h1 id="is-anyone-using-these-ideas-in-production">Is anyone using these ideas in production?</h1>
 <ul>
 <li>Heck yes</li>
 <li>We've been building LiveView apps for a couple years</li>

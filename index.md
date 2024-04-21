@@ -154,7 +154,7 @@ chris@launchscout.com
 - Competitive browsers makes standards matter again
 - Browser makers are more cooperative than ever before
 - Browser innovation has absolutely exloded
-  - to the point where developers are not keeping up
+  - **faster than developers are able to keep up**
 
 ---
 
@@ -170,19 +170,20 @@ chris@launchscout.com
 - Frameworks that reinvent rather than leverage standards
 - Transpiling to obsolete JS versions
 - Complex builds
-- Oscillations between SPA vs server rendered
+- Oscillations between SPA vs server rendered 
 
 ---
 
-# But it's doesn't have to be this way...
+# So we have all these great things
+## But we have we made the experience of web application development better?
 
 ---
 
-# Let's talk about some good ideas!
+# Let's see what we can do about that!
 
 ---
 
-# Let's talk about managing state...
+# First, let's talk about managing state...
 
 ---
 
@@ -227,14 +228,14 @@ chris@launchscout.com
 
 ---
 
-# Another good idea: "dumb" clients
+# Another simple idea: "dumb" components
 - React
 - EmberJS (actions up, data down)
 - LiveView functional components
 
 ---
 
-# Clients are dumb if...
+# Components are dumb if...
 - render data
   - often passed in as props
 - dispatch events
@@ -278,7 +279,8 @@ export class CommentsSectionElement extends LitElement {
 ```
 ---
 
-# But how do we actually add comments?
+# But where do the comments actually go?
+## How to send them to server?
 - We could make an API
   - REST
   - GraphQL
@@ -297,7 +299,7 @@ export class CommentsSectionElement extends LitElement {
 ---
 ![](event_reducers.png)
 
-## Client
+## Client (dumb comoponents)
 - render state
 - sends events
 - receive state changes
@@ -376,6 +378,14 @@ end
 
 ---
 
+# But is this actually viable?
+- Our state is *all* on the server
+- Something needs to hold state for *every connected client*
+- This could be millions of stateful connections
+- We just went to crazy town right?
+
+---
+
 # The secret sauce: Elixir
 - Erlang/OTP: 25 years of distributed computing learning baked in
 - Extremely light-weight processes to manage state
@@ -383,15 +393,16 @@ end
 - High availabity, concurrent
 - Phoenix Channels
   - An thin abstraction over WebSockets
+  - Proven to scale to millions of *stateful* connections per server
 
 ---
 
 # Why is this approach better?
-- Higher level of abstraction
-- Events and state vs request/response
-- State lives on the server
+- State lives in a single place: the server
   - Not shared
   - Immutable
+- This lets us operate at a higher level of abstraction
+- Events and state vs request/response
 
 ---
 
@@ -437,36 +448,26 @@ end
 ```
 ---
 
-# So that's cool but I want more control!
-- I want to control the HTML that renders my comments
-- What if I could put the template to render the comments right in my HTML?
-- What if I didn't have to make a custom element to do it?
-
----
-
-# What do we need?
-- We've had the `template` element
-- We haven't had a way to add dynamic bits
-- W3C specs that aim to solve this:
-  - Template instantiation
-  - DOM Parts
-
----
-
-# No the specs are not final but...
-- Multiple polyfill implementations exist
-- They are largely interoperable
+# But could we make things even simpler?
+## Could building an app be as simple as editing an HTML file?
 
 ---
 
 # Introducing `<live-template>`
-- Connects a template to a Livestate
+- Connects a client side template to a Livestate
 - Renders state
 - Dispatches events
+- Get started with only an HTML file
 
 ---
 
-# [Let's see it!](https://codepen.io/superchris-the-lessful/pen/ExMVrBo)
+# Client side templating
+- Not yet standardized
+  - but work is underway
+- I chose Sprae (for now)
+  - well maintained
+  - fast
+  - works well
 
 ---
 
@@ -474,19 +475,25 @@ end
 - We don't need a build tool to use `live-template`
 - import maps are :fire:
 - let your browser resolve and fetch dependencies
-- jspm makes it ridonkulously easy
+- [jspm](https://jspm.io) makes it ridonkulously easy
 
 ---
 
-# Other other implementations of this pattern
-- LiveView (Elixir)
-- LiveViewJS
-- Hotwire (kinda?)
-- LiveSvelte
+# If great artists steal, let's steal from the best...
+## LiveView
+- The original
+- Elixir front to back
+- Client side is rendered in Elixir
+  - State diffs are pushed
+  - JS client lib re-renders
 
 ---
 
-# But is this actually viable?
+# Let's compare
+
+---
+
+# Is anyone using these ideas in production?
 - Heck yes
 - We've been building LiveView apps for a couple years
 - LiveState is newer but starting to catch on
