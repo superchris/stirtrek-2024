@@ -466,7 +466,8 @@ end
 
 ---
 
-## Comments template
+## Comments LiveView template
+
 ```elixir
 <dl>
   <%= for comment <- @comments do %>
@@ -489,7 +490,7 @@ end
 
 ---
 
-## Comments LiveView
+## Comments [LiveView](http://localhost:4000/live_comments)
 ```elixir
 defmodule SimpifiedCommentsWeb.CommentsLive do
   use SimpifiedCommentsWeb, :live_view
@@ -506,10 +507,6 @@ end
 
 ---
 
-# LiveView
-
----
-
 # LiveTemplates
 ## Could building an app be as simple as editing an HTML file?
 
@@ -522,7 +519,7 @@ end
 - Get started with only an HTML file
 
 ---
-## Comments in `<live-template>`
+## [Comments](./livetemplate-comments.html) in `<live-template>`
 ```html
 <html>
   <head>
@@ -579,21 +576,36 @@ end
 
 ---
 
-# Comment in LiveSignal/Preact
+## [Comment](./livesignal-preact.html) in LiveSignal/Preact
+```js
+import { h, render } from 'preact';
+import htm from 'htm';
+import { createPreactSignal } from './live-signals.js';
 
----
+const [commentSignal, dispatchEvent] = createPreactSignal({ 
+  url: 'ws://localhost:4000/live_state',
+  topic: 'comments:all',
+  initialValue: [],
+  path: 'comments'
+});
+const html = htm.bind(h);
 
-# If great artists steal, let's steal from the best...
-## LiveView
-- The original
-- Elixir front to back
-- Client side is rendered in Elixir
-  - State diffs are pushed
-  - JS client lib re-renders
+function Comments(props) {
+  let comment = '';
+  const onInput = event => (comment = event.currentTarget.value);
+  const onClick = () => dispatchEvent(new CustomEvent('add-comment', { detail: {comment }}));
+  return html`<div>
+    <ul>
+      ${commentSignal.value.map(comment => html`<li>${comment}</li>`)}
+    </ul>
+    <input onInput=${onInput} value=${comment} />
+    <button onClick=${onClick}>Add!</button>
+  </div>`;
+}
 
----
+render(html`<${Comments} />`, document.body);
 
-# Let's compare
+```
 
 ---
 
@@ -614,6 +626,14 @@ end
 
 ---
 
+# So how do I choose?
+- LiveView is solid and proven if you're all in on Elixir
+- LiveState shines for embedded apps
+- LiveTemplates is incredibly easy to get started with
+- LiveSignals should work with darn near anything
+
+---
+
 # Questions to ask yourself
 - Do I need a framework?
   - Could my browser do this instead?
@@ -623,7 +643,6 @@ end
 ---
 
 ## Thanks!
-![](bitly_qr.png)
 
 ---
 

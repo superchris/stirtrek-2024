@@ -1,7 +1,15 @@
 <html>
   <head>
-    <script type="module" src="http://localhost:4000/assets/app.js"></script>
-    
+    <script type="importmap">
+    {
+      "imports": {
+        "@launchscout/live-template": "https://esm.sh/@launchscout/live-template@0.4.1/index.js"
+      }
+    }
+    </script>
+    <script type="module">
+      import '@launchscout/live-template';
+    </script>
   </head>
   <body>
     <live-template url="ws://localhost:4000/live_state" topic="comments:all">

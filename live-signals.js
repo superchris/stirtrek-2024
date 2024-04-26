@@ -11,8 +11,9 @@ export const createPreactSignal = (liveStateOrOptions) => {
   liveState.eventTarget.addEventListener('livestate-change', ({detail: { state }}) => {
     preactSignal.value = updater(state);
   });
+  const dispatchEvent = (event) => liveState.dispatchEvent(event);
   liveState.connect();
-  return preactSignal;
+  return [preactSignal, dispatchEvent];
 }
 
 export const createPolyfillSignal = (liveStateOrOptions) => {
