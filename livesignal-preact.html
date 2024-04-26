@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.9.0/dist/es-module-shims.js" crossorigin="anonymous"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@preact/signals": "https://ga.jspm.io/npm:@preact/signals@1.2.3/dist/signals.module.js",
+      "htm": "https://ga.jspm.io/npm:htm@3.1.1/dist/htm.module.js",
+      "phx-live-state": "https://ga.jspm.io/npm:phx-live-state@0.11.2/build/src/index.js",
+      "preact": "https://ga.jspm.io/npm:preact@10.20.2/dist/preact.module.js",
+      "signal-polyfill": "https://ga.jspm.io/npm:signal-polyfill@0.1.0/dist/index.js",
+      "subscript": "https://ga.jspm.io/npm:subscript@8.3.4/subscript.js"
+    },
+    "scopes": {
+      "https://ga.jspm.io/": {
+        "@preact/signals-core": "https://ga.jspm.io/npm:@preact/signals-core@1.6.0/dist/signals-core.module.js",
+        "json-joy/esm/json-patch": "https://ga.jspm.io/npm:json-joy@1.19.0/esm/json-patch/index.js",
+        "phoenix": "https://ga.jspm.io/npm:phoenix@1.6.15/priv/static/phoenix.mjs",
+        "preact/hooks": "https://ga.jspm.io/npm:preact@10.20.2/hooks/dist/hooks.module.js",
+        "process": "https://ga.jspm.io/npm:@jspm/core@2.0.1/nodelibs/browser/process.js",
+        "reflect-metadata": "https://ga.jspm.io/npm:reflect-metadata@0.1.14/Reflect.js",
+        "subscript": "https://ga.jspm.io/npm:subscript@7.6.2/subscript.js",
+        "wc-context": "https://ga.jspm.io/npm:wc-context@1.0.0/core.js"
+      }
+    }
+  }
+  </script>
+  <script type="module">
+    import { h, render } from 'preact';
+    import LiveState from 'phx-live-state';
+    import htm from 'htm';
+    import { createPreactSignal } from './live-signals.js';
+
+    const liveState = new LiveState({url: 'ws://localhost:4000/live_state', topic: 'comments:all'});
+    const commentSignal = createPreactSignal(liveState, [], 'comments');
+    liveState.connect();
+
+    const html = htm.bind(h);
+
+    function Comments(props) {
+      return html`<div>
+        <ul>
+          ${commentSignal.value.map(comment => html`<li>${comment}</li>`)}
+        </ul>
+        
+      </div>`;
+    }
+
+    render(html`<${Comments} />`, document.body);
+
+  </script>
+</head>
+
+<body>
+  <div id="app">App lives here</div>
+</body>
+
+</html>
