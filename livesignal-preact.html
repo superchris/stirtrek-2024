@@ -1,7 +1,8 @@
 <html>
 
 <head>
-  <script async src="https://ga.jspm.io/npm:es-module-shims@1.9.0/dist/es-module-shims.js" crossorigin="anonymous"></script>
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.9.0/dist/es-module-shims.js"
+    crossorigin="anonymous"></script>
   <script type="importmap">
   {
     "imports": {
@@ -28,14 +29,10 @@
   </script>
   <script type="module">
     import { h, render } from 'preact';
-    import LiveState from 'phx-live-state';
     import htm from 'htm';
     import { createPreactSignal } from './live-signals.js';
 
-    const liveState = new LiveState({url: 'ws://localhost:4000/live_state', topic: 'comments:all'});
-    const commentSignal = createPreactSignal(liveState, [], 'comments');
-    liveState.connect();
-
+    const commentSignal = createPreactSignal({ url: 'ws://localhost:4000/live_state', topic: 'comments:all', initialValue: [], path: 'comments' });
     const html = htm.bind(h);
 
     function Comments(props) {
