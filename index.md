@@ -63,6 +63,12 @@ chris@launchscout.com
 
 ---
 
+# It's also a Design Pattern talk
+- We'll get into specific implementation
+- But the ideas are more important
+
+---
+
 # First let's talk about how we got here
 ## A brief history of web development
 
@@ -99,6 +105,7 @@ chris@launchscout.com
 - State lives on server (probably in a DB)
 - We could build apps really fast
 - JS largely ignored
+
 ---
 
 # The AJAX era: 2005-2015
@@ -294,7 +301,7 @@ export class CommentsSectionElement extends LitElement {
 
 ---
 
-# Putting the good ideas together...
+## Putting the good ideas together...
 
 ---
 ![](event_reducers.png)
@@ -397,7 +404,7 @@ end
 
 ---
 
-# Why is this approach better?
+# Why is this pattern better?
 - State lives in a single place: the server
   - Not shared
   - Immutable
@@ -406,12 +413,9 @@ end
 
 ---
 
-# More goodies
-- Bi-directional
-- Serve HTML from anywhere
-- Real time is essentially free!
-  - Events can come from other sources that user interacation
-  - Computing state and notifying clients is the same
+## Another benefit: Real time is essentially free!
+- Events can come from other sources that user interacation
+- Computing state and notifying clients is the same
 
 ---
 
@@ -448,34 +452,134 @@ end
 ```
 ---
 
-# But could we make things even simpler?
+# Variations on the theme
+
+---
+
+# LiveView
+- The original
+- Elixir front to back
+- Views are rendered in Elixir
+- Events dispatched over WebSockets
+- View updates received over WebSockets
+  - There is javascript, but you don't need to touch it for most app development
+
+---
+
+## Comments template
+```elixir
+<dl>
+  <%= for comment <- @comments do %>
+    <dt><%= comment["author"] %></dt>
+    <dd><%= comment["text"] %></dd>
+  <% end %>
+</dl>
+<form phx-submit="add_comment">
+  <div>
+    <label>Author</label>
+    <input name="author" />
+  </div>
+  <div>
+    <label>Comment</label>
+    <input name="text" />
+  </div>
+  <button>Add comment</button>
+</form>
+```
+
+---
+
+## Comments LiveView
+```elixir
+defmodule SimpifiedCommentsWeb.CommentsLive do
+  use SimpifiedCommentsWeb, :live_view
+
+  def mount(_parms, _session, socket) do
+    {:ok, socket |> assign(:comments, [])}
+  end
+
+  def handle_event("add_comment", comment, %{assigns: %{comments: comments}} = socket) do
+    {:noreply, socket |> assign(:comments, [comment | comments])}
+  end
+end
+```
+
+---
+
+# LiveView
+
+---
+
+# LiveTemplates
 ## Could building an app be as simple as editing an HTML file?
 
 ---
 
-# Introducing `<live-template>`
+# `<live-template>`
 - Connects a client side template to a Livestate
 - Renders state
 - Dispatches events
 - Get started with only an HTML file
 
 ---
-
-# Client side templating
-- Not yet standardized
-  - but work is underway
-- I chose Sprae (for now)
-  - well maintained
-  - fast
-  - works well
-
+## Comments in `<live-template>`
+```html
+<html>
+  <head>
+    <script type="importmap">
+    {
+      "imports": {
+        "@launchscout/live-template": "https://esm.sh/@launchscout/live-template@0.4.1/index.js"
+      }
+    }
+    </script>
+    <script type="module">
+      import '@launchscout/live-template';
+    </script>
+  </head>
+  <body>
+    <live-template url="ws://localhost:4000/live_state" topic="comments:all">
+      <template>
+        <ul>
+          <li :each="comment in comments" :text="comment"></li>
+        </ul>
+        <form :sendsubmit="add-comment">
+          <label>Comment</label>
+          <input name="comment" />
+          <button>Add!</button>
+        </form>
+      </template>
+    </live-template>
+  </body>
+</html>
+```
 ---
 
 # An interesting aside..
 - We don't need a build tool to use `live-template`
 - import maps are :fire:
 - let your browser resolve and fetch dependencies
-- [jspm](https://jspm.io) makes it ridonkulously easy
+- Write your app in an html file, or jsbin, or codepen, or ....
+- [esm.sh](https://esm.sh) or [jspm.io](https://jspm.io) make it ridonkulously easy
+
+---
+
+# Signals: a standard unit of reactivity
+- A value which can notify on changes
+- Rapidly being adopted across JS frameworks
+- SolidJS, Preact, Angular, (maybe React?)
+- TC39 Proposal
+
+---
+
+# LiveSignals
+- bridging a signal to the backend
+- Supports Preact and TC39 so far 
+  - Supporting something else would be a very tiny PR :wink:
+
+---
+
+# Comment in LiveSignal/Preact
 
 ---
 
