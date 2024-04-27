@@ -1,0 +1,1 @@
+import '@launchscout/live-template';

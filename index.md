@@ -82,7 +82,9 @@ chris@launchscout.com
 
 ---
 
-# CGI: the web app equivalent of stone tablets
+# CGI: Common Gateway Interface
+- the web app equivalent of stone tablets
+- Programs invoked by the webserver
 - Perl, VB, PL/SQL, you name it!
 - This was ok for little tiny things
 - For large applications, not so much
@@ -92,6 +94,7 @@ chris@launchscout.com
 
 # The browser wars: 1997-2005ish
 - Netscape adds Java/Javascript
+- NS owns the browser space
 - Microsoft gets scared
 - IE gets bundled into Windoze
 - IE wins (95%+ by 2004)
@@ -111,25 +114,26 @@ chris@launchscout.com
 # The AJAX era: 2005-2015
 - XMLHttpRequest
 - DHTML
+- Apps can display new stuff without a page reload!
 - GMail sets the bar 2004
-- IE stops innovating after it wins
-  - standards, schmandards
+- Browser innovation stagnates after IE wins
 
 ---
 
 # Meanwhile in developer land...
 - The user experience got a lot better
 - The developer experiences, not so much..
-- We need to deal with client side code
-- Browsers ain't gonna innovate, so DIY
+- Things on the client are getting complicated!
+- How do we manage the complexity?
 
 ---
 
-# Yay! Client side MVC to the rescue...
+# The Client side MVC cycle
 1. Let's apply same good ideas that worked server side in JS!
 2. Let's build a JS MVC framework!
 3. Ugghh this one got big and complicated...
-4. Go to 1.
+4. I know, I'll write a *simple* client side MVC framework
+5. Repeat
 
 ---
 
@@ -160,7 +164,7 @@ chris@launchscout.com
 # The modern era: 2015 - present
 - Competitive browsers makes standards matter again
 - Browser makers are more cooperative than ever before
-- Browser innovation has absolutely exloded
+- Browser innovation has absolutely exploded
   - **faster than developers are able to keep up**
 
 ---
@@ -169,6 +173,8 @@ chris@launchscout.com
 - Web components (custom HTML elements)
 - Websockets
 - Javascript maturation
+  - Modules
+  - Import maps
 - Webassembly
 
 ---
@@ -178,11 +184,6 @@ chris@launchscout.com
 - Transpiling to obsolete JS versions
 - Complex builds
 - Oscillations between SPA vs server rendered 
-
----
-
-# So we have all these great things
-## But we have we made the experience of web application development better?
 
 ---
 
@@ -221,9 +222,9 @@ chris@launchscout.com
 * Returns new state: ```["Get Milk"]```
 * Add a second item
   ```js
-  todoReducer({name: "Add item", item: "Speak at CodeMash"}, ["Get Milk"])
+  todoReducer({name: "Add item", item: "Speak at StirTrek"}, ["Get Milk"])
   ```
-* Returns new state: ```["Get Milk", "Speak at CodeMash"]```
+* Returns new state: ```["Get Milk", "Speak at StirTrek"]```
 
 ---
 
@@ -236,9 +237,9 @@ chris@launchscout.com
 ---
 
 # Another simple idea: "dumb" components
-- React
 - EmberJS (actions up, data down)
-- LiveView functional components
+- React
+- Angular
 
 ---
 
@@ -295,18 +296,12 @@ export class CommentsSectionElement extends LitElement {
 
 ---
 
-# Websockets
-- Allows bidirectional communication from client to server
-- What could that give us?
-
----
-
 ## Putting the good ideas together...
 
 ---
 ![](event_reducers.png)
 
-## Client (dumb comoponents)
+## Client (dumb components)
 - render state
 - sends events
 - receive state changes
@@ -320,7 +315,7 @@ export class CommentsSectionElement extends LitElement {
 # LiveState
 - An implementation of this pattern
 - Not the first, not the only
-- Client code javascript npm
+- Client code javascript library
 - Server side Elixir library
 
 ---
@@ -414,7 +409,7 @@ end
 ---
 
 ## Another benefit: Real time is essentially free!
-- Events can come from other sources that user interacation
+- Events can come from other sources that user interaction
 - Computing state and notifying clients is the same
 
 ---
@@ -516,6 +511,7 @@ end
 - Connects a client side template to a Livestate
 - Renders state
 - Dispatches events
+- Uses sprae for template evaluation
 - Get started with only an HTML file
 
 ---
@@ -562,7 +558,8 @@ end
 ---
 
 # Signals: a standard unit of reactivity
-- A value which can notify on changes
+- Reactive primitives for managing application state
+- Track access and trigger renders on change
 - Rapidly being adopted across JS frameworks
 - SolidJS, Preact, Angular, (maybe React?)
 - TC39 Proposal
@@ -572,7 +569,7 @@ end
 # LiveSignals
 - bridging a signal to the backend
 - Supports Preact and TC39 so far 
-  - Supporting something else would be a very tiny PR :wink:
+- Supporting something else would be a very tiny PR :wink:
 
 ---
 
@@ -631,14 +628,6 @@ render(html`<${Comments} />`, document.body);
 - LiveState shines for embedded apps
 - LiveTemplates is incredibly easy to get started with
 - LiveSignals should work with darn near anything
-
----
-
-# Questions to ask yourself
-- Do I need a framework?
-  - Could my browser do this instead?
-- Does my state need to be in two places?
-- Could I keep things simpler?
 
 ---
 
