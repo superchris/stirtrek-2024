@@ -606,6 +606,14 @@ render(html`<${Comments} />`, document.body);
 
 ---
 
+# Variations I did't get to
+- [LiveViewJS](https://www.liveviewjs.com/) - Javascript
+- [HotWire](https://hotwired.dev/) - Ruby
+- [LiveWire](https://github.com/livewire/livewire) - PHP
+- [Many more...](https://github.com/liveviews/liveviews)
+
+---
+
 # Is anyone using these ideas in production?
 - Heck yes
 - We've been building LiveView apps for a couple years
