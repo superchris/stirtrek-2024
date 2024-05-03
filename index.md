@@ -640,6 +640,11 @@ render(html`<${Comments} />`, document.body);
 ---
 
 ## Thanks!
+- [LiveState](https://github.com/launchscout/live_state)
+- [LiveView](https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html)
+- [LiveTemplates](https://github.com/launchscout/live-templates)
+- [LiveSignals](https://github.com/launchscout/live_state)
+- [Sprae](https://github.com/dy/sprae)
 
 ---
 
